@@ -15,6 +15,7 @@ public:
 	adminClass(QWidget *parent = Q_NULLPTR);
 	~adminClass();
 	bool creatnewdish(QString id,QString dish);
+	bool deletedish(QString id,QString dish);
 
 private:
 	Ui::adminClass *ui;

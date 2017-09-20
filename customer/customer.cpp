@@ -20,6 +20,20 @@ customer::customer(QWidget *parent):
 {
 	ui->setupUi(this);
 	//ui.setupUi(this);
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../menu.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("select * from menu");
+	while (query.next())
+	{
+		ui->textEdit->append(query.value(1).toString()+tr(":")+query.value(2).toString());
+	}
+	db.close();//¹Ø±ÕÊý¾Ý¿â
 	class log *login = new class log(this);
 	//login->setGeometry(QRect(0,0, 600, 400));
 	login->setFixedSize(600, 400);
