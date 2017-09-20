@@ -21,6 +21,7 @@ public:
 	explicit ordercolumn(QWidget *parent = 0);
 	~ordercolumn();
 	bool creatsql();
+	void tray_sysn(QString id,QString dish);
 private:
 	Ui::ordercolumn *ui;
 
