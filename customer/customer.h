@@ -28,4 +28,5 @@ private slots:
 	void on_reminder_clicked();
 	void on_check_clicked();
 	void on_evaluate_clicked();
+	void on_sitdown_clicked();
 };

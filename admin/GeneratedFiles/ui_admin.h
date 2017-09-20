@@ -38,6 +38,10 @@ public:
     QPushButton *delete_customer;
     QLineEdit *customer_number;
     QLabel *label_6;
+    QLabel *label_7;
+    QLineEdit *seat;
+    QPushButton *timseat;
+    QPushButton *revoke;
 
     void setupUi(QWidget *adminClass)
     {
@@ -83,6 +87,18 @@ public:
         label_6 = new QLabel(adminClass);
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setGeometry(QRect(520, 90, 72, 15));
+        label_7 = new QLabel(adminClass);
+        label_7->setObjectName(QStringLiteral("label_7"));
+        label_7->setGeometry(QRect(10, 260, 72, 15));
+        seat = new QLineEdit(adminClass);
+        seat->setObjectName(QStringLiteral("seat"));
+        seat->setGeometry(QRect(90, 260, 91, 21));
+        timseat = new QPushButton(adminClass);
+        timseat->setObjectName(QStringLiteral("timseat"));
+        timseat->setGeometry(QRect(30, 310, 93, 28));
+        revoke = new QPushButton(adminClass);
+        revoke->setObjectName(QStringLiteral("revoke"));
+        revoke->setGeometry(QRect(190, 310, 93, 28));
 
         retranslateUi(adminClass);
 
@@ -101,6 +117,9 @@ public:
         label_5->setText(QApplication::translate("adminClass", "\346\211\200\346\234\211\351\241\276\345\256\242\350\264\246\346\210\267", 0));
         delete_customer->setText(QApplication::translate("adminClass", "\345\210\240\351\231\244\351\241\276\345\256\242", 0));
         label_6->setText(QApplication::translate("adminClass", "\351\241\276\345\256\242\350\264\246\346\210\267\357\274\232", 0));
+        label_7->setText(QApplication::translate("adminClass", "\345\272\247\344\275\215\357\274\232", 0));
+        timseat->setText(QApplication::translate("adminClass", "\345\242\236\345\212\240\345\272\247\344\275\215", 0));
+        revoke->setText(QApplication::translate("adminClass", "\346\222\244\351\224\200\345\272\247\344\275\215", 0));
     } // retranslateUi
 
 };

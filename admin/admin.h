@@ -16,6 +16,8 @@ public:
 	~adminClass();
 	bool creatnewdish(QString id,QString dish);
 	bool deletedish(QString id,QString dish);
+	bool creatnewseat(QString id);
+	bool deleteseat(QString id);
 
 private:
 	Ui::adminClass *ui;
@@ -26,4 +28,6 @@ private slots:
 void on_add_dishs_clicked();
 void on_delete_dish_clicked();
 void on_delete_customer_clicked();
+void on_timseat_clicked();
+void on_revoke_clicked();
 };

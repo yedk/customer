@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
@@ -31,6 +32,9 @@ public:
     QPushButton *evaluate;
     QLabel *label;
     QTextEdit *textEdit;
+    QLineEdit *tablenumber;
+    QLabel *label_2;
+    QPushButton *sitdown;
 
     void setupUi(QWidget *customer)
     {
@@ -58,6 +62,15 @@ public:
         textEdit = new QTextEdit(customer);
         textEdit->setObjectName(QStringLiteral("textEdit"));
         textEdit->setGeometry(QRect(420, 60, 231, 361));
+        tablenumber = new QLineEdit(customer);
+        tablenumber->setObjectName(QStringLiteral("tablenumber"));
+        tablenumber->setGeometry(QRect(310, 320, 61, 21));
+        label_2 = new QLabel(customer);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(250, 320, 41, 16));
+        sitdown = new QPushButton(customer);
+        sitdown->setObjectName(QStringLiteral("sitdown"));
+        sitdown->setGeometry(QRect(280, 370, 93, 28));
 
         retranslateUi(customer);
 
@@ -73,6 +86,8 @@ public:
         check->setText(QApplication::translate("customer", "\344\271\260\345\215\225", 0));
         evaluate->setText(QApplication::translate("customer", "\350\257\204\344\273\267", 0));
         label->setText(QApplication::translate("customer", "\345\211\251\344\275\231\351\244\220\346\241\214\344\275\215\347\275\256", 0));
+        label_2->setText(QApplication::translate("customer", "\345\272\247\344\275\215\357\274\232", 0));
+        sitdown->setText(QApplication::translate("customer", "\345\260\261\345\235\220", 0));
     } // retranslateUi
 
 };

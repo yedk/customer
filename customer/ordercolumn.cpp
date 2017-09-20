@@ -29,6 +29,7 @@ ordercolumn::ordercolumn(QWidget *parent) :
 	query.exec("select * from menu");
 	while (query.next())
 	{
+		//ui->menu->append(query.value(1).toString() + tr("hao zuo wei"));
 		ui->menu->append(query.value(1).toString() + tr(":") + query.value(2).toString());
 	}
 	db.close();//¹Ø±ÕÊý¾Ý¿â

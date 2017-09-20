@@ -77,6 +77,55 @@ bool adminClass::deletedish(QString id, QString dish)
 	}
 	db.close();
 }
+//添加新座位；
+bool adminClass::creatnewseat(QString id)
+{
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seat.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+		return false;
+	}
+	QSqlQuery query;
+	query.exec("CREATE TABLE seat (id INTEFER PRIMARY KEY,"
+		"idname varchar(20))");
+	query.exec("insert into seat(idname)values('" + id + "')");
+
+	db.close();
+	return true;
+	//return false;
+}
+//撤销座位；
+bool adminClass::deleteseat(QString id)
+{
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seat.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0,"Cannot open database",
+								"Unable to establish a database",QMessageBox::Cancel);
+		return false;
+	}
+	QSqlQuery query;
+	QString delete_sql;
+	delete_sql = "delete from seat where idname = ?";
+	query.prepare(delete_sql);
+	query.addBindValue(id);
+	if (!query.exec())
+	{
+		QMessageBox::critical(0, "cannot open database",
+			"Unable to establish a connection", QMessageBox::Cancel);
+		return false;
+	}
+	else
+	{
+		QMessageBox::information(this, "information", "This seat have been deleted!");
+		return true;
+	}
+	db.close();
+}
 //添加菜品按钮；
 void adminClass::on_add_dishs_clicked()
 {
@@ -143,3 +192,36 @@ void adminClass::on_delete_customer_clicked()
 	}
 	db.close();
 }
+
+//添加一个座位
+void adminClass::on_timseat_clicked()
+{
+	QString seatid = ui->seat->text();
+	bool flag = false;
+	flag = creatnewseat(seatid);
+	if (flag)
+	{
+		QMessageBox::information(this, "information", "The dishs have been created!");
+	}
+	else
+	{
+		QMessageBox::information(this, "information", "The dishs have not been created!");
+	}
+}
+
+//撤销一个座位；
+void adminClass::on_revoke_clicked()
+{
+	QString seatid = ui->seat->text();
+	bool flag = false;
+	flag = deleteseat(seatid);
+	if (flag)
+	{
+		QMessageBox::information(this, "information", "The dishs have been deleted!");
+	}
+	else
+	{
+		QMessageBox::information(this, "information", "cannot deleted this seat!");
+	}
+}
+

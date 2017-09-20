@@ -19,8 +19,23 @@ customer::customer(QWidget *parent):
 	ui(new Ui::customer)
 {
 	ui->setupUi(this);
-	//ui.setupUi(this);
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seat.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("select * from seat");
+	while (query.next())
+	{
+		//ui->menu->append(query.value(1).toString() + tr("hao zuo wei"));
+		ui->textEdit->append(query.value(1).toString() + tr("hao zuo wei"));
+	}
+	db.close();//关闭数据库
+	//ui.setupUi(this);
+	/*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../menu.sql");
 	if (!db.open())
 	{
@@ -33,7 +48,7 @@ customer::customer(QWidget *parent):
 	{
 		ui->textEdit->append(query.value(1).toString()+tr(":")+query.value(2).toString());
 	}
-	db.close();//关闭数据库
+	db.close();//关闭数据库*/
 	class log *login = new class log(this);
 	//login->setGeometry(QRect(0,0, 600, 400));
 	login->setFixedSize(600, 400);
@@ -55,12 +70,17 @@ void customer::on_evaluate_clicked()
 	evaluate *e = new evaluate(this);
 	e->exec();
 }
+void customer::on_sitdown_clicked()
+{
+}
 void customer::on_order_clicked()
 {
 	class ordercolumn *orum = new class ordercolumn(this);
 	orum->setGeometry(QRect(500, 250, 376, 247));
 	orum->setWindowModified(true);
 	orum->exec();
+	//ui->setupUi(this);
+
 	/*
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../menu.sql");//创建菜单数据库；
