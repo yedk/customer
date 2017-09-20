@@ -8,6 +8,7 @@
 #include "ui_customer.h"
 
 bool flag = false;
+//bool dialog_flag =;//对话框完成标志；
 log::log(QWidget *parent)
 	:QDialog(parent),
 	ui(new Ui::log)
@@ -46,7 +47,7 @@ void log::on_pushButton_clicked()
 		if ((query.value(1).toString()==ui->lineEdit->text())&& (query.value(2).toString() == ui->lineEdit_2->text()))
 		{
 			flag = true;
-			close();
+			//close();
 			break;
 		}
 	}

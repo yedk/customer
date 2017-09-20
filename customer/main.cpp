@@ -7,6 +7,13 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	customer w;
-	w.show();
-	return a.exec();
+	//class log l;
+	//l.show();
+	//if (l.exec() == QDialog::Accepted)
+	//{
+		w.show();
+		return a.exec();
+	//}
+	//else
+		//return 0;
 }

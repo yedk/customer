@@ -38,7 +38,8 @@ customer::customer(QWidget *parent):
 	//login->setGeometry(QRect(0,0, 600, 400));
 	login->setFixedSize(600, 400);
 	login->setWindowModified(true);
-	login->show();
+	//login->show();
+	login->exec();
 }
 
 customer::~customer()
