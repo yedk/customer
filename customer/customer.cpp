@@ -72,6 +72,38 @@ void customer::on_evaluate_clicked()
 }
 void customer::on_sitdown_clicked()
 {
+	QString seatnumber = ui->tablenumber->text();
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seatnumber.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+		//return false;
+	}
+	QSqlQuery query;
+	query.exec("CREATE TABLE seatnumber (id INTEFER PRIMARY KEY,"
+		"idname varchar(20),"
+		"dish varchar(20))");
+	query.exec("insert into seatnumber(idname,dish)values('" + seatnumber + "','" + seatnumber + "')");
+
+	db.close();
+	/*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seat.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database connection.", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("CREATE TABLE seatnumber(id INTEFER PRIMARY KEY,"
+		"seatid varchar(20))");
+	query.exec("INSERT INTO seatnumber VALUE(1,'seatnumber')");
+
+	
+	QMessageBox::information(this, "information", "seat sucessed!");
+	db.close();*/
+
 }
 void customer::on_order_clicked()
 {
@@ -103,6 +135,28 @@ void customer::on_order_clicked()
 }
 void customer::on_reminder_clicked()
 {
+	QString need;
+	QString water;
+	need = 'dish';
+	water = 'quic';
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../service.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database connection.", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("CREATE TABLE service(id INTEFER PRIMARY KEY,"
+		"num varchar(20),"
+		"water varchar(20))");
+	query.exec("insert into service(num,water)values('" + need + "','" + water + "')");
+	//query.exec("INSERT INTO service VALUE(1,'2')");
+	//query.exec("INSERT INTO service VALUE(2,'water')");
+
+	db.close();
+	QMessageBox::information(this, "information", "please wait a moment!");
+	/*
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../service.sql");
 	if (!db.open())
@@ -118,10 +172,14 @@ void customer::on_reminder_clicked()
 	query.exec("INSERT INTO service VALUE(2,'reminder')");
 
 	db.close();
-	QMessageBox::information(this,"information","please wait a moment");
+	QMessageBox::information(this,"information","please wait a moment");*/
 }
 void customer::on_water_clicked()
 {
+	QString need;
+	QString water;
+	need = 'need';
+	water = 'wate';
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../service.sql");
 	if (!db.open())
@@ -133,8 +191,9 @@ void customer::on_water_clicked()
 	query.exec("CREATE TABLE service(id INTEFER PRIMARY KEY,"
 		"num varchar(20),"
 		"water varchar(20))");
-	query.exec("INSERT INTO service VALUE(1,'2')");
-	query.exec("INSERT INTO service VALUE(2,'water')");
+	query.exec("insert into service(num,water)values('"+need+"','"+water+"')");
+	//query.exec("INSERT INTO service VALUE(1,'2')");
+	//query.exec("INSERT INTO service VALUE(2,'water')");
 
 	db.close();
 	QMessageBox::information(this, "information", "please wait a moment!");

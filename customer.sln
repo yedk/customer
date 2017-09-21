@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "customer", "customer\custom
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "admin", "admin\admin.vcxproj", "{06C124C0-05FB-4951-8A0B-8A9D2DD37A20}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "waiter", "waiter\waiter.vcxproj", "{31116940-097F-4B1E-B8DB-B527DA93270F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cook", "cook\cook.vcxproj", "{631216A9-232C-4C7D-A074-8E1E1CF6AE4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +25,14 @@ Global
 		{06C124C0-05FB-4951-8A0B-8A9D2DD37A20}.Debug|x64.Build.0 = Debug|x64
 		{06C124C0-05FB-4951-8A0B-8A9D2DD37A20}.Release|x64.ActiveCfg = Release|x64
 		{06C124C0-05FB-4951-8A0B-8A9D2DD37A20}.Release|x64.Build.0 = Release|x64
+		{31116940-097F-4B1E-B8DB-B527DA93270F}.Debug|x64.ActiveCfg = Debug|x64
+		{31116940-097F-4B1E-B8DB-B527DA93270F}.Debug|x64.Build.0 = Debug|x64
+		{31116940-097F-4B1E-B8DB-B527DA93270F}.Release|x64.ActiveCfg = Release|x64
+		{31116940-097F-4B1E-B8DB-B527DA93270F}.Release|x64.Build.0 = Release|x64
+		{631216A9-232C-4C7D-A074-8E1E1CF6AE4C}.Debug|x64.ActiveCfg = Debug|x64
+		{631216A9-232C-4C7D-A074-8E1E1CF6AE4C}.Debug|x64.Build.0 = Debug|x64
+		{631216A9-232C-4C7D-A074-8E1E1CF6AE4C}.Release|x64.ActiveCfg = Release|x64
+		{631216A9-232C-4C7D-A074-8E1E1CF6AE4C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

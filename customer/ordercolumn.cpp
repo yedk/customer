@@ -99,11 +99,12 @@ void ordercolumn::on_add_dish_clicked()
 		tray_id = query.value(1).toString();
 		tray_dish = query.value(2).toString();
 		ui->tray->append(query.value(1).toString()+tr(",")+query.value(2).toString());
-		tray_sysn(tray_id, tray_dish);
+		//tray_sysn(tray_id, tray_dish);
 	}
 	//ui->total->text();//显示价格；
 	db.close();//关闭数据库
 	//tray_sysn();
+	tray_sysn(tray_id, tray_dish);
 }
 void ordercolumn::on_endmeal_clicked()
 {
@@ -113,7 +114,7 @@ void ordercolumn::on_endmeal_clicked()
 void ordercolumn::tray_sysn(QString id,QString dish)
 {
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-	db.setDatabaseName("../menu.sql");
+	db.setDatabaseName("../tray.sql");
 	if (!db.open())
 	{
 		QMessageBox::critical(0, "Cannot open database",

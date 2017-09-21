@@ -67,7 +67,7 @@ public:
         tablenumber->setGeometry(QRect(310, 320, 61, 21));
         label_2 = new QLabel(customer);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(250, 320, 41, 16));
+        label_2->setGeometry(QRect(240, 320, 51, 20));
         sitdown = new QPushButton(customer);
         sitdown->setObjectName(QStringLiteral("sitdown"));
         sitdown->setGeometry(QRect(280, 370, 93, 28));
@@ -86,7 +86,7 @@ public:
         check->setText(QApplication::translate("customer", "\344\271\260\345\215\225", 0));
         evaluate->setText(QApplication::translate("customer", "\350\257\204\344\273\267", 0));
         label->setText(QApplication::translate("customer", "\345\211\251\344\275\231\351\244\220\346\241\214\344\275\215\347\275\256", 0));
-        label_2->setText(QApplication::translate("customer", "\345\272\247\344\275\215\357\274\232", 0));
+        label_2->setText(QApplication::translate("customer", "\345\272\247\344\275\215\345\217\267\357\274\232", 0));
         sitdown->setText(QApplication::translate("customer", "\345\260\261\345\235\220", 0));
     } // retranslateUi
 

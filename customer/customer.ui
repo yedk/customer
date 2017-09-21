@@ -114,14 +114,14 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>240</x>
      <y>320</y>
-     <width>41</width>
-     <height>16</height>
+     <width>51</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>座位：</string>
+    <string>座位号：</string>
    </property>
   </widget>
   <widget class="QPushButton" name="sitdown">
