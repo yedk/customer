@@ -7,7 +7,7 @@
 #include <string.h>
 #include "evaluate1.h"
 #include "ui_evaluate.h"
-
+#include <qfile.h>
 
 
 waiterClass::waiterClass(QWidget *parent)
@@ -27,7 +27,7 @@ waiterClass::waiterClass(QWidget *parent)
 	while (query.next())
 	{
 		//ui->menu->append(query.value(1).toString() + tr("hao zuo wei"));
-		ui->textEdit->append(query.value(1).toString() + tr("have been seated"));
+		ui->textEdit->append(query.value(1).toString() + QStringLiteral("号座位已经就坐"));
 	}
 	db.close();//关闭数据库
 	/*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -95,9 +95,38 @@ void waiterClass::on_viewinformation_clicked()
 	db.close();//关闭数据库*/
 }
 
+void waiterClass::on_empty_clicked()
+{
+	QFile::remove("../service.sql");
+	ui->textEdit_2->clear();
+}
+
+void waiterClass::on_checkdish_clicked()
+{
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../finished.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database connection.", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("SELECT * FROM finished");
+	if (query.next())
+	{
+		QMessageBox::information(this, "information", QStringLiteral("菜品已做好！马上上菜！"));
+	}
+	else
+	{
+		QMessageBox::information(this, "information", QStringLiteral("菜品还没做好！"));
+	}
+	db.close();
+}
+
 void waiterClass::on_claim_clicked()
 {
 	QMessageBox::information(this, "information", "You will serive this seat!");
 	ui->textEdit->clear();
+	QFile::remove("../seatnumber.sql");
 }
 

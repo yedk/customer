@@ -6,6 +6,8 @@
 #include <QDebug>
 #include "customer.h"
 #include "ui_customer.h"
+#include <qevent.h>
+
 
 bool flag = false;
 //bool dialog_flag =;//对话框完成标志；
@@ -26,6 +28,10 @@ bool log::log_sucess()
 		return true;
 	else
 	return false;
+}
+void log::closeEvent(QCloseEvent * event)
+{
+	event->ignore();
 }
 void log::on_pushButton_clicked()
 {
@@ -53,7 +59,9 @@ void log::on_pushButton_clicked()
 	}
 	if (flag)
 	{
-		close();
+		//emit mainwindow();
+		//close();
+		this->hide();
 	}
 	else
 	{

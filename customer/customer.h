@@ -20,6 +20,8 @@ public:
 	customer(QWidget *parent = Q_NULLPTR);
 	~customer();
 	//QMessageBox check;
+//public slots:
+	//bool mainwindowshow();
 private:
 	Ui::customer *ui;
 private slots:
@@ -29,4 +31,7 @@ private slots:
 	void on_check_clicked();
 	void on_evaluate_clicked();
 	void on_sitdown_clicked();
+	void on_check_dish_clicked();
+	void on_refresh_clicked();
+
 };

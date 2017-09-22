@@ -31,12 +31,15 @@ public:
     QLabel *label_2;
     QTextEdit *textEdit_2;
     QPushButton *viewinformation;
+    QPushButton *empty;
+    QLabel *label_3;
+    QPushButton *checkdish;
 
     void setupUi(QDialog *waiterClass)
     {
         if (waiterClass->objectName().isEmpty())
             waiterClass->setObjectName(QStringLiteral("waiterClass"));
-        waiterClass->resize(507, 348);
+        waiterClass->resize(795, 348);
         label = new QLabel(waiterClass);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(110, 30, 72, 15));
@@ -51,13 +54,22 @@ public:
         evaluate->setGeometry(QRect(90, 270, 93, 28));
         label_2 = new QLabel(waiterClass);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(330, 20, 72, 15));
+        label_2->setGeometry(QRect(650, 30, 72, 15));
         textEdit_2 = new QTextEdit(waiterClass);
         textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
-        textEdit_2->setGeometry(QRect(290, 50, 161, 231));
+        textEdit_2->setGeometry(QRect(610, 60, 161, 171));
         viewinformation = new QPushButton(waiterClass);
         viewinformation->setObjectName(QStringLiteral("viewinformation"));
-        viewinformation->setGeometry(QRect(320, 310, 101, 28));
+        viewinformation->setGeometry(QRect(630, 250, 101, 28));
+        empty = new QPushButton(waiterClass);
+        empty->setObjectName(QStringLiteral("empty"));
+        empty->setGeometry(QRect(630, 300, 93, 28));
+        label_3 = new QLabel(waiterClass);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(330, 90, 101, 20));
+        checkdish = new QPushButton(waiterClass);
+        checkdish->setObjectName(QStringLiteral("checkdish"));
+        checkdish->setGeometry(QRect(440, 80, 111, 28));
 
         retranslateUi(waiterClass);
 
@@ -72,6 +84,9 @@ public:
         evaluate->setText(QApplication::translate("waiterClass", "\350\257\204\344\273\267", 0));
         label_2->setText(QApplication::translate("waiterClass", "\345\212\250\346\200\201\344\277\241\346\201\257", 0));
         viewinformation->setText(QApplication::translate("waiterClass", "\346\237\245\347\234\213\345\212\250\346\200\201\344\277\241\346\201\257", 0));
+        empty->setText(QApplication::translate("waiterClass", "\346\270\205\347\251\272\344\277\241\346\201\257", 0));
+        label_3->setText(QApplication::translate("waiterClass", "\346\237\245\347\234\213\350\217\234\345\223\201\350\277\233\345\272\246\357\274\232", 0));
+        checkdish->setText(QApplication::translate("waiterClass", "\350\217\234\345\223\201\345\256\214\346\210\220\350\277\233\345\272\246", 0));
     } // retranslateUi
 
 };

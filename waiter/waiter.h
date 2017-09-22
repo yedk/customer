@@ -31,6 +31,8 @@ private slots:
 	void on_claim_clicked();
 	void on_evaluate_clicked();
 	void on_viewinformation_clicked();
+	void on_empty_clicked();
+	void on_checkdish_clicked();
 };
 
 #endif

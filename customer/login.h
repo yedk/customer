@@ -8,6 +8,8 @@
 #include "ui_login.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <qevent.h>
+
 
 namespace Ui {
 	class log;
@@ -20,7 +22,9 @@ public:
 	explicit log(QWidget *parent = 0);
 	~log();
 	bool log_sucess();
-
+	void closeEvent(QCloseEvent*event);
+//signals:
+	//bool mainwindow();//主界面函数；
 private:
 	Ui::log *ui;
 private slots:

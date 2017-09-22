@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>507</width>
+    <width>795</width>
     <height>348</height>
    </rect>
   </property>
@@ -65,8 +65,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>20</y>
+     <x>650</x>
+     <y>30</y>
      <width>72</width>
      <height>15</height>
     </rect>
@@ -78,24 +78,63 @@
   <widget class="QTextEdit" name="textEdit_2">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>50</y>
+     <x>610</x>
+     <y>60</y>
      <width>161</width>
-     <height>231</height>
+     <height>171</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="viewinformation">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>310</y>
+     <x>630</x>
+     <y>250</y>
      <width>101</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text">
     <string>查看动态信息</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="empty">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>300</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>清空信息</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>90</y>
+     <width>101</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>查看菜品进度：</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="checkdish">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>80</y>
+     <width>111</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>菜品完成进度</string>
    </property>
   </widget>
  </widget>

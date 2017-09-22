@@ -35,6 +35,9 @@ public:
     QLineEdit *tablenumber;
     QLabel *label_2;
     QPushButton *sitdown;
+    QPushButton *check_dish;
+    QLabel *label_3;
+    QPushButton *refresh;
 
     void setupUi(QWidget *customer)
     {
@@ -71,6 +74,15 @@ public:
         sitdown = new QPushButton(customer);
         sitdown->setObjectName(QStringLiteral("sitdown"));
         sitdown->setGeometry(QRect(280, 370, 93, 28));
+        check_dish = new QPushButton(customer);
+        check_dish->setObjectName(QStringLiteral("check_dish"));
+        check_dish->setGeometry(QRect(270, 180, 93, 28));
+        label_3 = new QLabel(customer);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(200, 140, 111, 16));
+        refresh = new QPushButton(customer);
+        refresh->setObjectName(QStringLiteral("refresh"));
+        refresh->setGeometry(QRect(490, 440, 93, 28));
 
         retranslateUi(customer);
 
@@ -88,6 +100,9 @@ public:
         label->setText(QApplication::translate("customer", "\345\211\251\344\275\231\351\244\220\346\241\214\344\275\215\347\275\256", 0));
         label_2->setText(QApplication::translate("customer", "\345\272\247\344\275\215\345\217\267\357\274\232", 0));
         sitdown->setText(QApplication::translate("customer", "\345\260\261\345\235\220", 0));
+        check_dish->setText(QApplication::translate("customer", "\346\237\245\350\257\242\350\277\233\345\272\246", 0));
+        label_3->setText(QApplication::translate("customer", "\345\201\232\350\217\234\350\277\233\345\272\246\346\237\245\350\257\242\357\274\232", 0));
+        refresh->setText(QApplication::translate("customer", "\345\210\267\346\226\260", 0));
     } // retranslateUi
 
 };

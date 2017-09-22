@@ -19,6 +19,17 @@ customer::customer(QWidget *parent):
 	ui(new Ui::customer)
 {
 	ui->setupUi(this);
+	class log *login = new class log(this);
+	//login->setGeometry(QRect(0,0, 600, 400));
+	///login->setFixedSize(600, 400);
+	///login->setWindowModified(true);
+	//login->show();
+	login->exec();
+	//this->hide();
+	//connect(login,login->close,this,mainwindowshow());
+
+
+
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../seat.sql");
 	if (!db.open())
@@ -31,7 +42,7 @@ customer::customer(QWidget *parent):
 	while (query.next())
 	{
 		//ui->menu->append(query.value(1).toString() + tr("hao zuo wei"));
-		ui->textEdit->append(query.value(1).toString() + tr("hao zuo wei"));
+		ui->textEdit->append(query.value(1).toString() + QStringLiteral("号座位空闲"));
 	}
 	db.close();//关闭数据库
 	//ui.setupUi(this);
@@ -49,21 +60,20 @@ customer::customer(QWidget *parent):
 		ui->textEdit->append(query.value(1).toString()+tr(":")+query.value(2).toString());
 	}
 	db.close();//关闭数据库*/
-	class log *login = new class log(this);
-	//login->setGeometry(QRect(0,0, 600, 400));
-	login->setFixedSize(600, 400);
-	login->setWindowModified(true);
-	//login->show();
-	login->exec();
+
 }
 
 customer::~customer()
 {
 	delete ui;
 }
+
+
+//结账；
 void customer::on_check_clicked()
 {
-	QMessageBox::information(this, "information", "you are welcome next time!");
+	QMessageBox::information(this, "information", QStringLiteral("谢谢光临，欢迎下次再来！"));
+	close();
 }
 void customer::on_evaluate_clicked()
 {
@@ -72,21 +82,31 @@ void customer::on_evaluate_clicked()
 }
 void customer::on_sitdown_clicked()
 {
+	bool flag = false;
 	QString seatnumber = ui->tablenumber->text();
+
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-	db.setDatabaseName("../seatnumber.sql");
+	db.setDatabaseName("../seat.sql");
 	if (!db.open())
 	{
 		QMessageBox::critical(0, "Cannot open database",
 			"Unable to establish a database", QMessageBox::Cancel);
-		//return false;
 	}
 	QSqlQuery query;
-	query.exec("CREATE TABLE seatnumber (id INTEFER PRIMARY KEY,"
-		"idname varchar(20),"
-		"dish varchar(20))");
-	query.exec("insert into seatnumber(idname,dish)values('" + seatnumber + "','" + seatnumber + "')");
-
+	QString delete_sql;
+	delete_sql = "delete from seat where idname = ?";
+	query.prepare(delete_sql);
+	query.addBindValue(seatnumber);
+	if (!query.exec())
+	{
+		QMessageBox::critical(0, "cannot open database",
+			"Unable to establish a connection", QMessageBox::Cancel);
+		//return false;
+	}
+	else
+	{
+		QMessageBox::information(this, "information", QStringLiteral("顾客已经就坐！"));
+	}
 	db.close();
 	/*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../seat.sql");
@@ -105,6 +125,67 @@ void customer::on_sitdown_clicked()
 	db.close();*/
 
 }
+//做菜进度查询
+void customer::on_check_dish_clicked()
+{
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../finished.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database connection.", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("SELECT * FROM finished");
+	if (query.next())
+	{
+		QMessageBox::information(this, "information", QStringLiteral("菜品已做好！马上上菜！"));
+	}
+	else
+	{
+		QMessageBox::information(this, "information", QStringLiteral("菜品还没做好！"));
+	}
+	db.close();
+
+}
+void customer::on_refresh_clicked()
+{
+	/*QString seatnumber = ui->tablenumber->text();
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seatnumber.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+		//return false;
+	}
+	QSqlQuery query;
+	query.exec("CREATE TABLE seatnumber (id INTEFER PRIMARY KEY,"
+		"idname varchar(20),"
+		"dish varchar(20))");
+	query.exec("insert into seatnumber(idname,dish)values('" + seatnumber + "','" + seatnumber + "')");
+
+	db.close();*/
+	ui->textEdit->clear();
+
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seat.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("select * from seat");
+	while (query.next())
+	{
+		//ui->menu->append(query.value(1).toString() + tr("hao zuo wei"));
+		ui->textEdit->append(query.value(1).toString() + QStringLiteral("号座位空闲"));
+	}
+	db.close();//关闭数据库
+
+}
+
 void customer::on_order_clicked()
 {
 	class ordercolumn *orum = new class ordercolumn(this);
@@ -137,8 +218,8 @@ void customer::on_reminder_clicked()
 {
 	QString need;
 	QString water;
-	need = 'dish';
-	water = 'quic';
+	need = QStringLiteral("服务员");
+	water = QStringLiteral("快上菜！");
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../service.sql");
 	if (!db.open())
@@ -155,7 +236,7 @@ void customer::on_reminder_clicked()
 	//query.exec("INSERT INTO service VALUE(2,'water')");
 
 	db.close();
-	QMessageBox::information(this, "information", "please wait a moment!");
+	QMessageBox::information(this, "information", QStringLiteral("请稍等片刻，服务员正在催菜！"));
 	/*
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../service.sql");
@@ -178,8 +259,8 @@ void customer::on_water_clicked()
 {
 	QString need;
 	QString water;
-	need = 'need';
-	water = 'wate';
+	need = QStringLiteral("服务员");
+	water = QStringLiteral("需要加水");
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../service.sql");
 	if (!db.open())
@@ -196,5 +277,5 @@ void customer::on_water_clicked()
 	//query.exec("INSERT INTO service VALUE(2,'water')");
 
 	db.close();
-	QMessageBox::information(this, "information", "please wait a moment!");
+	QMessageBox::information(this, "information", QStringLiteral("请稍等！服务员加水马上就到！"));
 }
