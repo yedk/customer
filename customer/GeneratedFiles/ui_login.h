@@ -36,7 +36,7 @@ public:
     {
         if (log->objectName().isEmpty())
             log->setObjectName(QStringLiteral("log"));
-        log->resize(400, 300);
+        log->resize(400, 267);
         pushButton = new QPushButton(log);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(90, 190, 93, 28));

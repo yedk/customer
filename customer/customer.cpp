@@ -68,6 +68,24 @@ customer::~customer()
 	delete ui;
 }
 
+void customer::seatnumber(QString seatnumber)
+{
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seatnumber.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("CREATE TABLE seatnumber (id INTEFER PRIMARY KEY,"
+		"idname varchar(20),"
+		"dish varchar(20))");
+	query.exec("insert into seatnumber(idname,dish)values('" +seatnumber+ "','" + seatnumber + "')");
+
+	db.close();
+}
+
 
 //结账；
 void customer::on_check_clicked()
@@ -84,7 +102,20 @@ void customer::on_sitdown_clicked()
 {
 	bool flag = false;
 	QString seatnumber = ui->tablenumber->text();
+	/*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seatnumber.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("CREATE TABLE seatnumber (id INTEFER PRIMARY KEY,"
+		"idname varchar(20),"
+		"dish varchar(20))");
+	query.exec("insert into menu(idname,dish)values('" + seatnumber + "','" + seatnumber + "')");
 
+	db.close();*/
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../seat.sql");
 	if (!db.open())
@@ -123,7 +154,7 @@ void customer::on_sitdown_clicked()
 	
 	QMessageBox::information(this, "information", "seat sucessed!");
 	db.close();*/
-
+	this->seatnumber(seatnumber);
 }
 //做菜进度查询
 void customer::on_check_dish_clicked()
@@ -146,7 +177,7 @@ void customer::on_check_dish_clicked()
 		QMessageBox::information(this, "information", QStringLiteral("菜品还没做好！"));
 	}
 	db.close();
-
+	QFile::remove("../finished.sql");
 }
 void customer::on_refresh_clicked()
 {

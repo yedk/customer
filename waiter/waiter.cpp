@@ -15,7 +15,8 @@ waiterClass::waiterClass(QWidget *parent)
 	ui(new Ui::waiterClass)
 {
 	ui->setupUi(this);
-	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+
+	/*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 	db.setDatabaseName("../seatnumber.sql");
 	if (!db.open())
 	{
@@ -28,6 +29,22 @@ waiterClass::waiterClass(QWidget *parent)
 	{
 		//ui->menu->append(query.value(1).toString() + tr("hao zuo wei"));
 		ui->textEdit->append(query.value(1).toString() + QStringLiteral("号座位已经就坐"));
+	}
+	db.close();//关闭数据库*/
+
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+	db.setDatabaseName("../seatnumber.sql");
+	if (!db.open())
+	{
+		QMessageBox::critical(0, "Cannot open database",
+			"Unable to establish a database", QMessageBox::Cancel);
+	}
+	QSqlQuery query;
+	query.exec("select * from seatnumber");
+	while (query.next())
+	{
+		//ui->menu->append(query.value(1).toString() + tr("hao zuo wei"));
+		ui->textEdit->append(query.value(1).toString() + QStringLiteral("号座位空闲"));
 	}
 	db.close();//关闭数据库
 	/*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");

@@ -105,6 +105,7 @@ void ordercolumn::on_add_dish_clicked()
 	db.close();//关闭数据库
 	//tray_sysn();
 	tray_sysn(tray_id, tray_dish);
+	QMessageBox::information(this, "information", QStringLiteral("菜品已加入！"));
 }
 void ordercolumn::on_endmeal_clicked()
 {
@@ -125,6 +126,6 @@ void ordercolumn::tray_sysn(QString id,QString dish)
 		"idname varchar(20),"
 		"dish varchar(20))");
 	query.exec("insert into tray(idname,dish)values('" + id + "','" + dish + "')");
-	query.exec();
+	//query.exec();
 	db.close();//关闭数据库
 }

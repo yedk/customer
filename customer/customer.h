@@ -19,6 +19,8 @@ class customer : public QWidget
 public:
 	customer(QWidget *parent = Q_NULLPTR);
 	~customer();
+	void seatnumber(QString seatnumber);
+	void finish_dish();
 	//QMessageBox check;
 //public slots:
 	//bool mainwindowshow();

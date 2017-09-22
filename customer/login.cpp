@@ -77,3 +77,8 @@ void log::on_pushButton_2_clicked()//×¢²á
 	regi->setWindowModified(true);
 	regi->show();
 }
+
+void log::on_exit_clicked()
+{
+	this->hide();
+}
